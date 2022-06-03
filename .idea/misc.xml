@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Sistemas_Oscar/Desktop/AndroidStudioProjects/SMS/app/src/main/res/layout/activity_smscomprobar_zona.xml" value="0.14709569577935647" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable-v24/imput_black.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/btn_blanco_redondo.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/btn_color.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/btn_color_redondo.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/circulo_logo.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/imput.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/imput_color.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/margenes.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/splah_screen.xml" value="0.1022491455078125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16893115942028986" />
+        <entry key="app/src/main/res/layout/activity_smscomprobar_zona.xml" value="0.25049145646079846" />
+        <entry key="app/src/main/res/layout/activity_smshome.xml" value="0.2436900705531024" />
+        <entry key="app/src/main/res/layout/activity_smslogin.xml" value="0.16893115942028986" />
+        <entry key="app/src/main/res/layout/activity_smsmain.xml" value="0.23278003637341488" />
+        <entry key="app/src/main/res/layout/activity_smsreguister.xml" value="0.19091907445935236" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.149" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1205" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
