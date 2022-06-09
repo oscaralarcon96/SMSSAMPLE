@@ -3,6 +3,7 @@ package com.example.sms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -31,27 +33,52 @@ import okhttp3.Response;
 public class SMScomprobarZona extends AppCompatActivity {
 
     private ArrayList<String> telefonos; //listview
+    private ArrayList<String> telefonos2; //listview
     private ArrayAdapter<String> adaptador1; //listview
-    private ListView lv1; //listview
+    private ArrayAdapter<String> adaptador2; //listview
+    private ListView lv1, lv2; //listview
 
-    Button btnscanner, btscannerEnvio;
+    Button btnscanner, btscannerEnvio, btngeneral, btnagrupado;
+    Boolean ctrlbtn;
     EditText edtscanner;
+    String requestactual="";
+    ArrayList<String> lista = new ArrayList<>();
+    ArrayList<String> lista2 = new ArrayList<>();
+    TextView tv, tv2, tv3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smscomprobar_zona);
-
         telefonos=new ArrayList<String>();
+        telefonos2=new ArrayList<String>();
         adaptador1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,telefonos); //listview
-        lv1=(ListView)findViewById(R.id.listaV); //listview
-        lv1.setAdapter(adaptador1); //listview
-        final String[] cadena1 = new String[1];
-        final String[] cadena2 = new String[1];
-        TextView tv = (TextView)findViewById(R.id.textView);
-        TextView tv2 = (TextView)findViewById(R.id.textView2);
+        adaptador2=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,telefonos2); //listview
+        tv = findViewById(R.id.textView);
+        tv2 = findViewById(R.id.textView2);
+        tv3 = findViewById(R.id.textView3);
         btnscanner = findViewById(R.id.btnscanner);
         edtscanner = findViewById(R.id.editTextscanner);
         btscannerEnvio = findViewById(R.id.buttonenviar);
+        btngeneral = findViewById(R.id.general);
+        btnagrupado = findViewById(R.id.agrupado);
+        ctrlbtn = true;
+
+        btngeneral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ctrlbtn = true;
+                controladorboton();
+            }
+        });
+
+        btnagrupado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ctrlbtn = false;
+                controladorboton();
+            }
+        });
+
         btnscanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,10 +93,15 @@ public class SMScomprobarZona extends AppCompatActivity {
             }
         });
 
+
+
         btscannerEnvio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validar()){
+                    tv.setText("");
+                    tv2.setText("");
+                    tv3.setText("");
                     Toast.makeText(SMScomprobarZona.this, "Codigo fue enviado", Toast.LENGTH_SHORT).show();
 
                     //AQUI COMIENZA MI CODIGO PARA LLENAR LISTVIEW
@@ -97,7 +129,11 @@ public class SMScomprobarZona extends AppCompatActivity {
                                 SMScomprobarZona.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+
+                                        tv3.setText(edtscanner.getText().toString());
                                         edtscanner.setText("");
+                                        requestactual = myResponse;
+
                                         // Toast.makeText(getApplicationContext(), myResponse, Toast.LENGTH_SHORT).show();
                                         try {
                                             JSONArray sample=new JSONArray(myResponse);
@@ -106,25 +142,48 @@ public class SMScomprobarZona extends AppCompatActivity {
                                                 JSONArray cambio = sample.getJSONArray(0);
                                                 JSONObject cambio3 = cambio.getJSONObject(0);
 
-                                                tv.setText(cambio3.getString("total_items"));
-
-
+                                                tv.setText("Unidades:\n"+cambio3.getString("total_items"));
 
                                             //ARREGLO 1 TERMINA
 
                                             //ARREGLO 2 INICIA
                                             JSONArray cambio1 = sample.getJSONArray(1);
                                             telefonos.clear();
+                                            telefonos2.clear();
+                                            //lista general
                                             for(int i=0;i<cambio1.length();i++) {
                                                 JSONObject cambio2 = cambio1.getJSONObject(i);
                                                 //JSONArray objectfi=cambio2.getJSONArray(0);
                                                 //JSONObject objectfi=cambio2.getJSONObject("[0]id");
                                                 telefonos.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
+                                               // telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
                                                 //cadena2[0] = cambio3.getString("usuario_nombre");
+                                                tv.setText("");
+                                                tv.setText("Unidades:\n"+ (i+1));
+                                                //lista agrupada
+                                                boolean existe = lista.contains(cambio2.getString("co_int"));
+                                                if(!(existe)){
+                                                    lista.add(cambio2.getString("co_int"));
+                                                    lista2.add("1");
+                                                    telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
+                                                }else{
+                                                    String busqueda = cambio2.getString("co_int");
+                                                    int indice = lista.indexOf(busqueda);
+                                                    int indice2 = 1 + Integer.parseInt(lista2.get(indice));
+                                                    lista2.set(indice, String.valueOf(indice2));
+                                                }
+
                                             }
-                                            adaptador1.notifyDataSetChanged();
+
+                                            for(int i=0;i<lista.size();i++) {
+                                                telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
+                                            }
+
+
+                                            ctrlbtn = true;
+                                            controladorboton();
                                             JSONObject cambio2 = cambio1.getJSONObject(0);
-                                            tv2.setText(cambio2.getString("usuario_nombre"));
+                                            tv2.setText("Usuario:\n"+cambio2.getString("usuario_nombre"));
                                             //ARREGLO 2 TERMINA
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -136,8 +195,6 @@ public class SMScomprobarZona extends AppCompatActivity {
                     });
 
                     //AQUI TERMINA MI CODIGO
-
-
 
                 }else {
                     Toast.makeText(SMScomprobarZona.this, "No existe codigo de zona", Toast.LENGTH_SHORT).show();
@@ -174,5 +231,39 @@ public class SMScomprobarZona extends AppCompatActivity {
             r = false;
         }
         return r;
+    }
+
+    public boolean controladorboton(){
+        if(requestactual==""){
+            Toast.makeText(this, "NO DATA", Toast.LENGTH_SHORT).show();}else{
+        if(ctrlbtn){
+            //BOTON GENERAL
+            int myColor = Color.parseColor("#A2224C");
+            btngeneral.setBackgroundColor(myColor);
+            btngeneral.setTextColor(Color.WHITE);
+            //BOTON AGRUPADO
+            btnagrupado.setBackgroundColor(Color.WHITE);
+            btnagrupado.setTextColor(Color.BLACK);
+            lv1=findViewById(R.id.listaV); //listview
+            adaptador1.notifyDataSetChanged();
+            lv1.setAdapter(adaptador1); //listview
+
+
+        }else{
+            //BOTON GENERAL
+            int myColor = Color.parseColor("#A2224C");
+            btnagrupado.setBackgroundColor(myColor);
+            btnagrupado.setTextColor(Color.WHITE);
+            //BOTON AGRUPADO
+            btngeneral.setBackgroundColor(Color.WHITE);
+            btngeneral.setTextColor(Color.BLACK);
+            lv2=findViewById(R.id.listaV); //listview
+            adaptador2.notifyDataSetChanged();
+            lv2.setAdapter(adaptador2); //listview
+
+        }
+    }
+        return true;
+
     }
 }
