@@ -120,9 +120,9 @@ public class SMScomprobarZona extends AppCompatActivity {
                                                 //JSONArray objectfi=cambio2.getJSONArray(0);
                                                 //JSONObject objectfi=cambio2.getJSONObject("[0]id");
                                                 telefonos.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
-                                                adaptador1.notifyDataSetChanged();
                                                 //cadena2[0] = cambio3.getString("usuario_nombre");
                                             }
+                                            adaptador1.notifyDataSetChanged();
                                             JSONObject cambio2 = cambio1.getJSONObject(0);
                                             tv2.setText(cambio2.getString("usuario_nombre"));
                                             //ARREGLO 2 TERMINA
