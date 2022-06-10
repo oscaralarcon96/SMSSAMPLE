@@ -150,6 +150,8 @@ public class SMScomprobarZona extends AppCompatActivity {
                                             JSONArray cambio1 = sample.getJSONArray(1);
                                             telefonos.clear();
                                             telefonos2.clear();
+                                            lista.clear();
+                                            lista2.clear();
                                             //lista general
                                             for(int i=0;i<cambio1.length();i++) {
                                                 JSONObject cambio2 = cambio1.getJSONObject(i);
