@@ -109,21 +109,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/general"
+                android:id="@+id/agrupado"
                 android:layout_width="147dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/principalSMS"
-                android:text="Items General"
+                android:text="Items Agrupado"
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/agrupado"
+                android:id="@+id/general"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:text="Items Agrupados"
+                android:text="Items General"
                 android:textColor="@color/black" />
         </LinearLayout>
 

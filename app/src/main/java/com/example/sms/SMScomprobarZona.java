@@ -195,12 +195,12 @@ public class SMScomprobarZona extends AppCompatActivity {
 
                                             for(int i=0;i<lista.size();i++) {
                                                 //telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
-                                                telefonos2.set(i, telefonos2.get(i));
+                                                lista2.set(i, "Cant:\n"+lista2.get(i));
 
                                             }
 
 
-                                            ctrlbtn = true;
+                                            ctrlbtn = false;
                                             controladorboton();
                                             JSONObject cambio2 = cambio1.getJSONObject(0);
                                             tv2.setText("Usuario:\n"+cambio2.getString("usuario_nombre"));
@@ -264,12 +264,9 @@ public class SMScomprobarZona extends AppCompatActivity {
             //BOTON AGRUPADO
             btnagrupado.setBackgroundColor(Color.WHITE);
             btnagrupado.setTextColor(Color.BLACK);
-            lv1=findViewById(R.id.listaV); //listview
+            lv2=findViewById(R.id.listaV); //listview
             adaptador1.notifyDataSetChanged();
-            lv1.setAdapter(adaptador1); //listview
-
-            MyAdapter myAdapter = new MyAdapter(getApplicationContext(), R.layout.list_item, telefonos2,lista2);
-            listview.setAdapter(myAdapter);
+            lv2.setAdapter(adaptador1); //listview
 
 
         }else{
@@ -280,9 +277,14 @@ public class SMScomprobarZona extends AppCompatActivity {
             //BOTON AGRUPADO
             btngeneral.setBackgroundColor(Color.WHITE);
             btngeneral.setTextColor(Color.BLACK);
-            lv2=findViewById(R.id.listaV); //listview
-            adaptador2.notifyDataSetChanged();
-            lv2.setAdapter(adaptador2); //listview
+
+
+            lv1=findViewById(R.id.listaV); //listview
+            adaptador1.notifyDataSetChanged();
+            lv1.setAdapter(adaptador1); //listview
+
+            MyAdapter myAdapter = new MyAdapter(getApplicationContext(), R.layout.list_item, telefonos2,lista2);
+            listview.setAdapter(myAdapter);
 
         }
     }
