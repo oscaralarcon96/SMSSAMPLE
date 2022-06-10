@@ -38,6 +38,9 @@ public class SMScomprobarZona extends AppCompatActivity {
     private ArrayAdapter<String> adaptador2; //listview
     private ListView lv1, lv2; //listview
 
+    private ListView listview;
+    private ArrayList<String> names;
+
     Button btnscanner, btscannerEnvio, btngeneral, btnagrupado;
     Boolean ctrlbtn;
     EditText edtscanner;
@@ -62,6 +65,9 @@ public class SMScomprobarZona extends AppCompatActivity {
         btngeneral = findViewById(R.id.general);
         btnagrupado = findViewById(R.id.agrupado);
         ctrlbtn = true;
+
+
+        listview = (ListView) findViewById(R.id.listaV);
 
         btngeneral.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,16 +101,26 @@ public class SMScomprobarZona extends AppCompatActivity {
 
 
 
+
+
+
         btscannerEnvio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
+
                 if (validar()){
                     tv.setText("");
                     tv2.setText("");
                     tv3.setText("");
                     Toast.makeText(SMScomprobarZona.this, "Codigo fue enviado", Toast.LENGTH_SHORT).show();
 
-                    //AQUI COMIENZA MI CODIGO PARA LLENAR LISTVIEW
+                    //AQUI COMIENZA MI C    ODIGO PARA LLENAR LISTVIEW
 
 
                     OkHttpClient client = new OkHttpClient();
@@ -178,7 +194,9 @@ public class SMScomprobarZona extends AppCompatActivity {
                                             }
 
                                             for(int i=0;i<lista.size();i++) {
-                                                telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
+                                                //telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
+                                                telefonos2.set(i, telefonos2.get(i));
+
                                             }
 
 
@@ -249,6 +267,9 @@ public class SMScomprobarZona extends AppCompatActivity {
             lv1=findViewById(R.id.listaV); //listview
             adaptador1.notifyDataSetChanged();
             lv1.setAdapter(adaptador1); //listview
+
+            MyAdapter myAdapter = new MyAdapter(getApplicationContext(), R.layout.list_item, telefonos2,lista2);
+            listview.setAdapter(myAdapter);
 
 
         }else{
