@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_parametros.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smscomprobar_zona.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smshome.xml" value="0.33" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smslogin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smsmain.xml" value="0.33" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smsreguister.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smszonas.xml" value="0.3625" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/list_item.xml" value="0.25" />
         <entry key="..\:/Users/Sistemas_Oscar/Desktop/AndroidStudioProjects/SMS/app/src/main/res/layout/activity_smscomprobar_zona.xml" value="0.33" />
         <entry key="..\:/Users/Sistemas_Oscar/Desktop/AndroidStudioProjects/SMS/app/src/main/res/layout/activity_smshome.xml" value="0.2660924750679964" />

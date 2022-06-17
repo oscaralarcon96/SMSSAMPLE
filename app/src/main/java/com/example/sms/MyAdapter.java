@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MyAdapter extends BaseAdapter {
   private Context context;
   private int layout;
+  private ImageView mImageView;
+
   private ArrayList<String> names;
   private ArrayList<String> names2;
   public MyAdapter(Context context, int layout, ArrayList<String> names, ArrayList<String> names2){
@@ -18,6 +21,7 @@ public class MyAdapter extends BaseAdapter {
     this.layout = layout;
     this.names = names;
     this.names2 = names2;
+
   }
 
   @Override
@@ -49,7 +53,7 @@ public class MyAdapter extends BaseAdapter {
 
     String currentName = names.get(position);
     String currentName2 = names2.get(position);
-   
+    // mImageView = (ImageView) v.findViewById(R.id.imageView); mImageView.setImageResource(R.drawable.presence_online);
     // Referenciamos el elemento a modificar y lo rellenamos
     TextView textView = (TextView) v.findViewById(R.id.data1);
     textView.setText(currentName);

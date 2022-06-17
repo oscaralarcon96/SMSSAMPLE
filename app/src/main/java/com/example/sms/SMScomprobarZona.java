@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -175,8 +176,11 @@ public class SMScomprobarZona extends AppCompatActivity {
 
 
             OkHttpClient client = new OkHttpClient();
-
-            String url = "http://181.198.202.181:8082/tfi/consultarzona?name="+ edtscanner.getText().toString()+"&inv=1&user=Moises";
+            SharedPreferences parametros = getSharedPreferences("Parametros", MODE_PRIVATE);
+            final int id_inv = parametros.getInt("id_inv", 1);
+            final String ipet = parametros.getString("ip","181.198.202.181");
+            final String portet = parametros.getString("port","8082");
+            String url = "http://"+ipet+":"+portet+"/tfi/consultarzona?name="+ edtscanner.getText().toString()+"&inv=1&user=Moises";
 
             Request request = new Request.Builder()
                     .url(url)

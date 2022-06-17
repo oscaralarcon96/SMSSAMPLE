@@ -44,8 +44,8 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#80FFFFFF"
             android:textColor="#ffff"
+            android:textColorHint="#80FFFFFF"
             android:textSize="16dp" />
 
         <EditText
@@ -62,8 +62,8 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#80FFFFFF"
             android:textColor="#ffff"
+            android:textColorHint="#80FFFFFF"
             android:textSize="16dp" />
 
         <Button
@@ -72,8 +72,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="30dp"
-            android:gravity="end"
             android:background="@android:color/transparent"
+            android:gravity="end"
             android:text="¿Olvidaste tu contraseña?"
             android:textColor="#fff" />
 
