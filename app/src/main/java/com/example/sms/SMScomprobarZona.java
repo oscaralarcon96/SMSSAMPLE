@@ -1,9 +1,7 @@
 package com.example.sms;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -60,7 +57,7 @@ public class SMScomprobarZona extends AppCompatActivity {
         telefonos2=new ArrayList<String>();
         adaptador1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,telefonos); //listview
         adaptador2=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,telefonos2); //listview
-        tv = findViewById(R.id.textView);
+        tv = findViewById(R.id.tv_zona);
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
         btnscanner = findViewById(R.id.btnscanner);
@@ -165,120 +162,120 @@ public class SMScomprobarZona extends AppCompatActivity {
         }
         return r;
     }
-    public boolean hacer_request() {
-        if (validar()){
-            tv.setText("");
-            tv2.setText("");
-            tv3.setText("");
-            Toast.makeText(SMScomprobarZona.this, "Codigo fue enviado", Toast.LENGTH_SHORT).show();
+        public boolean hacer_request() {
+            if (validar()){
+                tv.setText("");
+                tv2.setText("");
+                tv3.setText("");
+                Toast.makeText(SMScomprobarZona.this, "Codigo fue enviado", Toast.LENGTH_SHORT).show();
 
-            //AQUI COMIENZA MI C    ODIGO PARA LLENAR LISTVIEW
+                //AQUI COMIENZA MI C    ODIGO PARA LLENAR LISTVIEW
 
 
-            OkHttpClient client = new OkHttpClient();
-            SharedPreferences parametros = getSharedPreferences("Parametros", MODE_PRIVATE);
-            final int id_inv = parametros.getInt("id_inv", 1);
-            final String ipet = parametros.getString("ip","181.198.202.181");
-            final String portet = parametros.getString("port","8082");
-            String url = "http://"+ipet+":"+portet+"/tfi/consultarzona?name="+ edtscanner.getText().toString()+"&inv=1&user=Moises";
+                OkHttpClient client = new OkHttpClient();
+                SharedPreferences parametros = getSharedPreferences("Parametros", MODE_PRIVATE);
+                final int id_inv = parametros.getInt("id_inv", 1);
+                final String ipet = parametros.getString("ip","181.198.202.181");
+                final String portet = parametros.getString("port","8082");
+                String url = "http://"+ipet+":"+portet+"/tfi/consultarzona?name="+ edtscanner.getText().toString()+"&inv=1&user=Moises";
 
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
+                Request request = new Request.Builder()
+                        .url(url)
+                        .build();
 
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        final String myResponse = response.body().string();
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            final String myResponse = response.body().string();
 
-                        SMScomprobarZona.this.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                            SMScomprobarZona.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                                tv3.setText(edtscanner.getText().toString());
-                                edtscanner.setText("");
-                                requestactual = myResponse;
+                                    tv3.setText(edtscanner.getText().toString());
+                                    edtscanner.setText("");
+                                    requestactual = myResponse;
 
-                                // Toast.makeText(getApplicationContext(), myResponse, Toast.LENGTH_SHORT).show();
-                                try {
-                                    JSONArray sample=new JSONArray(myResponse);
+                                    // Toast.makeText(getApplicationContext(), myResponse, Toast.LENGTH_SHORT).show();
+                                    try {
+                                        JSONArray sample=new JSONArray(myResponse);
 
-                                    //ARREGLO 1 INICIA
-                                    JSONArray cambio = sample.getJSONArray(0);
-                                    JSONObject cambio3 = cambio.getJSONObject(0);
+                                        //ARREGLO 1 INICIA
+                                        JSONArray cambio = sample.getJSONArray(0);
+                                        JSONObject cambio3 = cambio.getJSONObject(0);
 
-                                    tv.setText("Unidades:\n"+cambio3.getString("total_items"));
+                                        tv.setText("Unidades:\n"+cambio3.getString("total_items"));
 
-                                    //ARREGLO 1 TERMINA
+                                        //ARREGLO 1 TERMINA
 
-                                    //ARREGLO 2 INICIA
-                                    JSONArray cambio1 = sample.getJSONArray(1);
-                                    telefonos.clear();
-                                    telefonos2.clear();
-                                    lista.clear();
-                                    lista2.clear();
-                                    //lista general
-                                    for(int i=0;i<cambio1.length();i++) {
-                                        JSONObject cambio2 = cambio1.getJSONObject(i);
-                                        //JSONArray objectfi=cambio2.getJSONArray(0);
-                                        //JSONObject objectfi=cambio2.getJSONObject("[0]id");
-                                        telefonos.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
-                                        // telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
-                                        //cadena2[0] = cambio3.getString("usuario_nombre");
-                                        tv.setText("");
-                                        tv.setText("Unidades:\n"+ (i+1));
-                                        //lista agrupada
-                                        boolean existe = lista.contains(cambio2.getString("co_int"));
-                                        if(!(existe)){
-                                            lista.add(cambio2.getString("co_int"));
-                                            lista2.add("1");
-                                            telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
-                                        }else{
-                                            String busqueda = cambio2.getString("co_int");
-                                            int indice = lista.indexOf(busqueda);
-                                            int indice2 = 1 + Integer.parseInt(lista2.get(indice));
-                                            lista2.set(indice, String.valueOf(indice2));
+                                        //ARREGLO 2 INICIA
+                                        JSONArray cambio1 = sample.getJSONArray(1);
+                                        telefonos.clear();
+                                        telefonos2.clear();
+                                        lista.clear();
+                                        lista2.clear();
+                                        //lista general
+                                        for(int i=0;i<cambio1.length();i++) {
+                                            JSONObject cambio2 = cambio1.getJSONObject(i);
+                                            //JSONArray objectfi=cambio2.getJSONArray(0);
+                                            //JSONObject objectfi=cambio2.getJSONObject("[0]id");
+                                            telefonos.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
+                                            // telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
+                                            //cadena2[0] = cambio3.getString("usuario_nombre");
+                                            tv.setText("");
+                                            tv.setText("Unidades:\n"+ (i+1));
+                                            //lista agrupada
+                                            boolean existe = lista.contains(cambio2.getString("co_int"));
+                                            if(!(existe)){
+                                                lista.add(cambio2.getString("co_int"));
+                                                lista2.add("1");
+                                                telefonos2.add(cambio2.getString("codigo") + "\n" + cambio2.getString("co_int") + "\n" + cambio2.getString("descrip"));
+                                            }else{
+                                                String busqueda = cambio2.getString("co_int");
+                                                int indice = lista.indexOf(busqueda);
+                                                int indice2 = 1 + Integer.parseInt(lista2.get(indice));
+                                                lista2.set(indice, String.valueOf(indice2));
+                                            }
+
                                         }
 
+                                        for(int i=0;i<lista.size();i++) {
+                                            //telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
+                                            lista2.set(i, "Cant:\n"+lista2.get(i));
+
+                                        }
+
+
+                                        ctrlbtn = false;
+                                        controladorboton();
+                                        JSONObject cambio2 = cambio1.getJSONObject(0);
+                                        tv2.setText("Usuario:\n"+cambio2.getString("usuario_nombre"));
+                                        //ARREGLO 2 TERMINA
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-
-                                    for(int i=0;i<lista.size();i++) {
-                                        //telefonos2.set(i, telefonos2.get(i)+"\nCantidad: "+ lista2.get(i));
-                                        lista2.set(i, "Cant:\n"+lista2.get(i));
-
-                                    }
-
-
-                                    ctrlbtn = false;
-                                    controladorboton();
-                                    JSONObject cambio2 = cambio1.getJSONObject(0);
-                                    tv2.setText("Usuario:\n"+cambio2.getString("usuario_nombre"));
-                                    //ARREGLO 2 TERMINA
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
-                }
-            });
+                });
 
-            //AQUI TERMINA MI CODIGO
+                //AQUI TERMINA MI CODIGO
 
-        }else {
-            Toast.makeText(SMScomprobarZona.this, "No existe codigo de zona", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(SMScomprobarZona.this, "No existe codigo de zona", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+            return true;
         }
-
-
-
-        return true;
-    }
 
 
 

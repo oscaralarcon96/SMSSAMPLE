@@ -18,7 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SMS">
         <activity
-            android:name=".SMSzonas"
+            android:name=".admin_resumen_zonas"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".admin_SMSzonas"
             android:exported="false" />
         <activity
             android:name=".Parametros"
@@ -42,11 +51,7 @@
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/spashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

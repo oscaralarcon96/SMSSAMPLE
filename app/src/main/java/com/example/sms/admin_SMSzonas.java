@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SMSzonas extends AppCompatActivity {
+public class admin_SMSzonas extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smszonas);
+        setContentView(R.layout.admin_activity_smszonas);
 
 
     }

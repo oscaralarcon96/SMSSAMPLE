@@ -53,7 +53,7 @@ public class MyAdapter extends BaseAdapter {
 
     String currentName = names.get(position);
     String currentName2 = names2.get(position);
-    // mImageView = (ImageView) v.findViewById(R.id.imageView); mImageView.setImageResource(R.drawable.presence_online);
+    // mImageView = (ImageView) v.findViewById(R.id.imageView); mImageView.setImageResource(R.drawable.trash);
     // Referenciamos el elemento a modificar y lo rellenamos
     TextView textView = (TextView) v.findViewById(R.id.data1);
     textView.setText(currentName);
