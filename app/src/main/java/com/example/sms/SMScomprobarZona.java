@@ -62,7 +62,7 @@ public class SMScomprobarZona extends AppCompatActivity {
         tv3 = findViewById(R.id.textView3);
         btnscanner = findViewById(R.id.btnscanner);
         edtscanner = findViewById(R.id.editTextscanner);
-        btscannerEnvio = findViewById(R.id.buttonenviar);
+        btscannerEnvio = findViewById(R.id.btn_descartar);
         btngeneral = findViewById(R.id.general);
         btnagrupado = findViewById(R.id.agrupado);
         ctrlbtn = true;

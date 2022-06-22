@@ -18,8 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SMS">
         <activity
+            android:name=".inv_informacion_general"
+            android:exported="false" />
+        <activity
             android:name=".admin_resumen_zonas"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,9 +53,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/spashTheme">
-
-        </activity>
+            android:theme="@style/spashTheme"></activity>
     </application>
 
 </manifest>

@@ -26,13 +26,21 @@
 
             <EditText
                 android:id="@+id/editTextscanner"
-                android:layout_width="match_parent"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:gravity="left"
                 android:inputType="text"
                 android:text="" />
+
+            <Button
+                android:id="@+id/btn_reload"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_launcher_reload"
+                android:gravity="right" />
 
         </LinearLayout>
 
@@ -45,7 +53,8 @@
             <ListView
                 android:id="@+id/listaV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_gravity="right" />
         </LinearLayout>
 
 

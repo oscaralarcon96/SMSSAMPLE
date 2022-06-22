@@ -1,7 +1,10 @@
 package com.example.sms;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -33,7 +37,6 @@ public class admin_resumen_zonas extends AppCompatActivity {
     private ArrayAdapter<String> zonas_adaptador; //listview
     private ListView listview;
     EditText etsearch;
-    String[] memory_zona;
     List<String> testList = new ArrayList<String>();
 
     @Override
@@ -44,6 +47,20 @@ public class admin_resumen_zonas extends AppCompatActivity {
         zonas_adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, zonas_list); //listview
         listview = (ListView) findViewById(R.id.listaV);
         etsearch = findViewById(R.id.editTextscanner);
+        Button btn_actualizar = (Button) findViewById(R.id.btn_reload);
+
+
+        btn_actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(getIntent());
+
+
+
+            }
+        });
+
 
 
         OkHttpClient client = new OkHttpClient();
@@ -71,7 +88,6 @@ public class admin_resumen_zonas extends AppCompatActivity {
                     admin_resumen_zonas.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
                             // Toast.makeText(getApplicationContext(), myResponse, Toast.LENGTH_SHORT).show();
                             try {
                                 JSONArray sample = new JSONArray(myResponse);
@@ -87,10 +103,7 @@ public class admin_resumen_zonas extends AppCompatActivity {
                                             "\nCANTIDAD: " + item_id.length() + "\nUSUARIO: " + user2);
                                     //lista agrupada
                                     listview.setAdapter(zonas_adaptador); //listview
-
                                 }
-
-
                                 //ARREGLO 2 TERMINA
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -126,7 +139,12 @@ public class admin_resumen_zonas extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Toast.makeText(admin_resumen_zonas.this, testList.get(i), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(admin_resumen_zonas.this, testList.get(i), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(admin_resumen_zonas.this, admin_SMSzonas.class);
+                //String zona_cache = null;
+                intent.putExtra("zona_cache", testList.get(i));
+                startActivity(intent);
+
 
 
 
