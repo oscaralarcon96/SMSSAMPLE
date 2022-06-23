@@ -2,6 +2,7 @@ package com.example.sms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Button;
 
 public class SMSMainActivity extends AppCompatActivity {
     Button ir_login, ir_reguister, ir_parametros;
+    private ProgressDialog pd = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +29,16 @@ public class SMSMainActivity extends AppCompatActivity {
         ir_reguister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View reguistrate) {
-                Intent intent2 = new Intent(SMSMainActivity.this, SMSreguister.class);
-                startActivity(intent2);
+               // Intent intent2 = new Intent(SMSMainActivity.this, SMSreguister.class);
+               // startActivity(intent2);
+               // texto = (TextView) findViewById(R.id.texto);
+
+                // Mostrar el ProgressDialog en este Thread
+                pd = ProgressDialog.show(SMSMainActivity.this, "Procesando", "Espere unos segundos...", true, false);
+                pd.dismiss();
+                // Se comienza la nueva Thread que descargará los datos necesarios
+               // new DownloadTask().execute("Parametros que necesite el DownloadTask");
+
             }
         });
 
