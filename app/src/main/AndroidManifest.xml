@@ -19,15 +19,13 @@
         android:theme="@style/Theme.SMS">
         <activity
             android:name=".inv_informacion_general"
-            android:exported="false" />
+            android:exported="true" >
+
+    </activity>
         <activity
             android:name=".admin_resumen_zonas"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".admin_SMSzonas"
@@ -53,7 +51,13 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/spashTheme"></activity>
+            android:theme="@style/spashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

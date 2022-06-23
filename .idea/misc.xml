@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/drawable/btn_color.xml" value="0.3675" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_admin_resumen_zonas.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_inv_informacion_general.xml" value="0.22" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_parametros.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smscomprobar_zona.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Sistemas_Oscar/AndroidStudioProjects/SMSSAMPLE/app/src/main/res/layout/activity_smshome.xml" value="0.33" />

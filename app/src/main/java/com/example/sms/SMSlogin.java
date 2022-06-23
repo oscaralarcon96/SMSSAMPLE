@@ -196,6 +196,8 @@ public class SMSlogin extends AppCompatActivity {
 
                         if(response.code()==200){
                             Intent intent = new Intent(SMSlogin.this, SMShome.class);
+                            //String zona_cache = null;
+                            intent.putExtra("usuario", edtUsuario.getText().toString().trim());
                             startActivity(intent);
 
                         }else if (response.code()==400){

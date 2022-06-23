@@ -14,6 +14,9 @@ public class SMShome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smshome);
+        Bundle extras = getIntent().getExtras();
+        String usuario =(String) extras.get("usuario");
+
         btncode = findViewById(R.id.button2);
         btncode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,7 +30,7 @@ public class SMShome extends AppCompatActivity {
         btnstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SMShome.this, SMScomprobarZona.class);
+                Intent intent = new Intent(SMShome.this, inv_informacion_general.class);
                 startActivity(intent);
             }
         });
@@ -36,9 +39,16 @@ public class SMShome extends AppCompatActivity {
         btnadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SMShome.this, SMScomprobarZona.class);
+                Intent intent = new Intent(SMShome.this, admin_resumen_zonas.class);
                 startActivity(intent);
             }
         });
+
+        if(usuario.equals("root")){
+            btnadmin.setVisibility(View.VISIBLE);
+            btnstatus.setVisibility(View.VISIBLE);
+
+
+        }
     }
 }
