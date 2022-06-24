@@ -33,8 +33,9 @@ import okhttp3.Response;
 
 public class admin_resumen_zonas extends AppCompatActivity {
 
-    private ArrayList<String> zonas_list; //listview
+    private ArrayList<String> zonas_list, zonas_list_filter; //listview
     private ArrayAdapter<String> zonas_adaptador; //listview
+    private ArrayAdapter<String> zonas_adaptador_filtrado; //listview
     private ListView listview;
     EditText etsearch;
     List<String> testList = new ArrayList<String>();
@@ -45,6 +46,7 @@ public class admin_resumen_zonas extends AppCompatActivity {
         setContentView(R.layout.activity_admin_resumen_zonas);
         zonas_list = new ArrayList<String>();
         zonas_adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, zonas_list); //listview
+        zonas_adaptador_filtrado = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, zonas_list_filter); //listview
         listview = (ListView) findViewById(R.id.listaV);
         etsearch = findViewById(R.id.editTextscanner);
         Button btn_actualizar = (Button) findViewById(R.id.btn_reload);
@@ -117,15 +119,22 @@ public class admin_resumen_zonas extends AppCompatActivity {
         //AQUI TERMINA MI CODIGO
 
 
+
         etsearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //Toast.makeText(getApplicationContext(), String.valueOf(i)+"|"+String.valueOf(i1)+"|"+String.valueOf(i2)+"|", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), String.valueOf(i)+"|"+String.valueOf(i1)+"|"+String.valueOf(i2)+"|", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 zonas_adaptador.getFilter().filter(charSequence);
+              //  Toast.makeText(getApplicationContext(), String.valueOf(i)+"|"+String.valueOf(i1)+"|"+String.valueOf(i2)+"|", Toast.LENGTH_SHORT).show();
+                //zonas_list_filter.addAll(zonas_list.fillArray());
+              //  zonas_adaptador_filtrado.getFilter().filter(charSequence);
+
             }
 
             @Override
@@ -139,12 +148,15 @@ public class admin_resumen_zonas extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+//listview.setAdapter(zonas_adaptador);
+                /*
                // Toast.makeText(admin_resumen_zonas.this, testList.get(i), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(admin_resumen_zonas.this, admin_SMSzonas.class);
                 //String zona_cache = null;
                 intent.putExtra("zona_cache", testList.get(i));
-                startActivity(intent);
+                startActivity(intent);*/
 
+              //  Toast.makeText(admin_resumen_zonas.this, zonas_adaptador_filtrado.getItem(i) , Toast.LENGTH_SHORT).show();
 
 
 

@@ -19,6 +19,9 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -130,6 +133,30 @@ public class inv_informacion_general extends AppCompatActivity {
                                 tv_u_diferencia.setText(String.valueOf(((total_items) - arreglo1_2.getInt("item_aprox"))));
                                 pd.dismiss();
 
+                                String dtStart = (((arreglo1_2.getString("fecha_apertura")).replace("-","")).replace(":","").replace(" ",""))+"+0000";
+                                SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssZ");
+                                SimpleDateFormat formatu = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
+                                try {
+                                    Date date = format.parse(dtStart);
+                                    System.out.println(date);
+                                    String dateTime = formatu.format(date);
+                                    System.out.println("Current Date Time : " + dateTime);
+                                    tv_fa.setText("Fecha Apertura \n"+dateTime);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                String dtStart2 = (((arreglo1_2.getString("fecha_cierre")).replace("-","")).replace(":","").replace(" ",""))+"+0000";
+                                SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMddHHmmssZ");
+                                SimpleDateFormat formatu2 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
+                                try {
+                                    Date date = format2.parse(dtStart2);
+                                    System.out.println(date);
+                                    String dateTime = formatu2.format(date);
+                                    System.out.println("Current Date Time : " + dateTime);
+                                    tv_fc.setText("Fecha Cierre \n"+dateTime);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
 
 
 
