@@ -33,7 +33,9 @@ import okhttp3.Response;
 
 public class admin_resumen_zonas extends AppCompatActivity {
 
-    private ArrayList<String> zonas_list, zonas_list_filter; //listview
+    private ArrayList<String> zonas_list;
+    private ArrayList<String> zonas_list_filter; //listview
+    //listview
     private ArrayAdapter<String> zonas_adaptador; //listview
     private ArrayAdapter<String> zonas_adaptador_filtrado; //listview
     private ListView listview;
@@ -45,6 +47,7 @@ public class admin_resumen_zonas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_resumen_zonas);
         zonas_list = new ArrayList<String>();
+        zonas_list_filter = new ArrayList<String>();
         zonas_adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, zonas_list); //listview
         zonas_adaptador_filtrado = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, zonas_list_filter); //listview
         listview = (ListView) findViewById(R.id.listaV);
@@ -101,8 +104,8 @@ public class admin_resumen_zonas extends AppCompatActivity {
                                     JSONArray item_id = new JSONArray(cambio2.getString("item_ids"));
                                     JSONArray user = new JSONArray(cambio2.getString("usuario"));
                                     String user2 = user.getString(1);
-                                    zonas_list.add(cambio2.getString("display_name") + "\nESTATUS: " + cambio2.getString("status") +
-                                            "\nCANTIDAD: " + item_id.length() + "\nUSUARIO: " + user2);
+                                   zonas_list.add(cambio2.getString("display_name") + "\nESTATUS: " + cambio2.getString("status") +
+                                           "\nCANTIDAD: " + item_id.length() + "\nUSUARIO: " + user2);
                                     //lista agrupada
                                     listview.setAdapter(zonas_adaptador); //listview
                                 }
@@ -130,10 +133,30 @@ public class admin_resumen_zonas extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                zonas_adaptador.getFilter().filter(charSequence);
-              //  Toast.makeText(getApplicationContext(), String.valueOf(i)+"|"+String.valueOf(i1)+"|"+String.valueOf(i2)+"|", Toast.LENGTH_SHORT).show();
+                zonas_list_filter.clear();
+                for(int j = 0; j < testList.size() ; j++) {
+                    String a = testList.get(j);
+                    int b = testList.get(j).length();
+                            a = testList.get(j).substring(0,etsearch.getText().toString().length());
+                            a = etsearch.getText().toString();
+            if(testList.get(j).substring(0,etsearch.getText().toString().length()).equals(etsearch.getText().toString())){
+                zonas_list_filter.add(zonas_list.get(j));
+            }
+            listview.setAdapter(zonas_adaptador_filtrado);
+                }
+
+
+
+
+                //Result.values = Filtered_Names;
+                //Result.count = Filtered_Names.size();
+
+                //zonas_adaptador.getFilter().filter(charSequence);
+                //listview.setAdapter(zonas_adaptador);
+                //  Toast.makeText(getApplicationContext(), String.valueOf(i)+"|"+String.valueOf(i1)+"|"+String.valueOf(i2)+"|", Toast.LENGTH_SHORT).show();
                 //zonas_list_filter.addAll(zonas_list.fillArray());
               //  zonas_adaptador_filtrado.getFilter().filter(charSequence);
+
 
             }
 
@@ -147,15 +170,26 @@ public class admin_resumen_zonas extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+              //  Toast.makeText(admin_resumen_zonas.this, zonas_list_filter.get(i), Toast.LENGTH_SHORT).show();
+
+
 
 //listview.setAdapter(zonas_adaptador);
-                /*
-               // Toast.makeText(admin_resumen_zonas.this, testList.get(i), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(admin_resumen_zonas.this, admin_SMSzonas.class);
-                //String zona_cache = null;
-                intent.putExtra("zona_cache", testList.get(i));
-                startActivity(intent);*/
+                if(etsearch.getText().toString().equals("")) {
 
+                    // Toast.makeText(admin_resumen_zonas.this, testList.get(i), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(admin_resumen_zonas.this, admin_SMSzonas.class);
+                    //String zona_cache = null;
+                    intent.putExtra("zona_cache", testList.get(i));
+                    startActivity(intent);
+                }else {
+                    String[] parts = zonas_list_filter.get(i).split("\n");
+                    Intent intent = new Intent(admin_resumen_zonas.this, admin_SMSzonas.class);
+                    //String zona_cache = null;
+                    intent.putExtra("zona_cache", parts[0]);
+                    startActivity(intent);
+
+                }
               //  Toast.makeText(admin_resumen_zonas.this, zonas_adaptador_filtrado.getItem(i) , Toast.LENGTH_SHORT).show();
 
 
@@ -165,7 +199,10 @@ public class admin_resumen_zonas extends AppCompatActivity {
 
 
 
+
+
     }
+
 
 
 
