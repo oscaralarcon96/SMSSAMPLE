@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class SMShome extends AppCompatActivity {
-    Button btncode, btnstatus, btnadmin;
+    Button btncode, btnstatus, btnadmin, btnprod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,18 @@ public class SMShome extends AppCompatActivity {
             }
         });
 
+        btnprod = findViewById(R.id.btnprod);
+        btnprod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SMShome.this, admin_prod.class);
+                startActivity(intent);
+            }
+        });
+
         if(usuario.equals("root")){
             btnadmin.setVisibility(View.VISIBLE);
-            btnstatus.setVisibility(View.VISIBLE);
+            btnprod.setVisibility(View.VISIBLE);
 
 
         }

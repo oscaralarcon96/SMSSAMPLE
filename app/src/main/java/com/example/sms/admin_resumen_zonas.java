@@ -134,16 +134,33 @@ public class admin_resumen_zonas extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 zonas_list_filter.clear();
-                for(int j = 0; j < testList.size() ; j++) {
-                    String a = testList.get(j);
-                    int b = testList.get(j).length();
-                            a = testList.get(j).substring(0,etsearch.getText().toString().length());
-                            a = etsearch.getText().toString();
-            if(testList.get(j).substring(0,etsearch.getText().toString().length()).equals(etsearch.getText().toString())){
+                listview.setAdapter(zonas_adaptador_filtrado);
+              /*  for(int j = 0; j < testList.size() ; j++) {
+                    if(testList.get(j).substring(0,etsearch.getText().toString().length()).equals(etsearch.getText().toString())){
                 zonas_list_filter.add(zonas_list.get(j));
             }
             listview.setAdapter(zonas_adaptador_filtrado);
-                }
+                }*/if(etsearch.getText().toString().equals("")){
+                    listview.setAdapter(zonas_adaptador);
+                }else{
+                int l=1;
+                for(int j = 0; j < testList.size() ; j++) {
+                    l=etsearch.getText().toString().length();
+                    for(int k = 0; k < testList.get(j).length() + 1 - etsearch.getText().toString().length() ; k++){
+                        String sample =testList.get(j).substring(k,l);
+                        l++;
+                        if(sample.equals(etsearch.getText().toString())){
+                            zonas_list_filter.add(zonas_list.get(j));
+                            listview.setAdapter(zonas_adaptador_filtrado);
+                            break;
+                        }
+                       // if(){
+                        //    zonas_list_filter.add(zonas_list.get(j));
+                        //}
+                    }
+                    l=1;
+
+                }}
 
 
 

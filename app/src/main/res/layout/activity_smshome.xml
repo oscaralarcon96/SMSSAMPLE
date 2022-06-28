@@ -31,8 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_weight="1"
-        android:gravity="center"
         android:background="@drawable/imagen_carrusel_1"
+        android:gravity="center"
         android:orientation="horizontal"
         android:translationY="91dp">
 
@@ -59,9 +59,9 @@
                 android:layout_height="wrap_content"
                 android:background="@color/principalSMS"
                 android:gravity="center"
-                android:text="Anvance Inventario"
+                android:text="Avance Inventario"
                 android:textColor="@color/white"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -124,7 +124,40 @@
                 android:gravity="center"
                 android:text="Administrar Zonas"
                 android:textColor="@color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btnprod"
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:background="@color/principalSMS"
+                android:gravity="center"
+                android:text="Productividad"
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
 
 
