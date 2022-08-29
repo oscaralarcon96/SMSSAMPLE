@@ -38,17 +38,17 @@ public class inv_informacion_general extends AppCompatActivity {
         setContentView(R.layout.activity_inv_informacion_general);
         RelativeLayout rl_avance = (RelativeLayout) findViewById(R.id.rl_avance);
         RelativeLayout rl_unidades = (RelativeLayout) findViewById(R.id.rl_unidades);
-        TextView tv_tienda = (TextView) findViewById(R.id.tv_tienda);
-        TextView tv_fa = (TextView) findViewById(R.id.tv_fa);
-        TextView tv_fc = (TextView) findViewById(R.id.tv_fc);
-        TextView tv_ciudad = (TextView) findViewById(R.id.tv_ciudad);
-        TextView tv_zonas = (TextView) findViewById(R.id.tv_zonas);
-        TextView tv_avance = (TextView) findViewById(R.id.tv_avance);
-        TextView tv_unidades = (TextView) findViewById(R.id.tv_unidades);
-        TextView tv_porcentaje = (TextView) findViewById(R.id.tv_porcentaje);
-        TextView tv_u_aprox = (TextView) findViewById(R.id.tv_u_aprox);
-        TextView tv_u_contadas = (TextView) findViewById(R.id.tv_u_contadas);
-        TextView tv_u_diferencia = (TextView) findViewById(R.id.tv_u_diferencia);
+        TextView tv_tienda = (TextView) findViewById(R.id.tv_tienda); //nombre tienda
+        TextView tv_fa = (TextView) findViewById(R.id.tv_fa); //fecha apertura
+        TextView tv_fc = (TextView) findViewById(R.id.tv_fc); //fecha cierre
+        TextView tv_ciudad = (TextView) findViewById(R.id.tv_ciudad); //ciudad
+        TextView tv_zonas = (TextView) findViewById(R.id.tv_zonas); //zonas contadas
+        TextView tv_avance = (TextView) findViewById(R.id.tv_avance); //--boton
+        TextView tv_unidades = (TextView) findViewById(R.id.tv_unidades); //--boton
+        TextView tv_porcentaje = (TextView) findViewById(R.id.tv_porcentaje); //--la genera la android
+        TextView tv_u_aprox = (TextView) findViewById(R.id.tv_u_aprox); //stock tienda
+        TextView tv_u_contadas = (TextView) findViewById(R.id.tv_u_contadas); //unidades contadas
+        TextView tv_u_diferencia = (TextView) findViewById(R.id.tv_u_diferencia); //dif --la genera la android
         ProgressBar pb_porcentaje = (ProgressBar)  findViewById(R.id.pb_porcentaje);
 
 
@@ -114,9 +114,10 @@ public class inv_informacion_general extends AppCompatActivity {
                                 //Toast.makeText(getApplicationContext(), String.valueOf(items_zona.length()), Toast.LENGTH_SHORT).show();
                                 for (int i = 0; i < arreglo2_1.length(); i++) {
                                     JSONObject arreglo2_2 = arreglo2_1.getJSONObject(i);
-                                    JSONArray items_zona = new JSONArray(arreglo2_2.getString("item_ids"));
+                                    //JSONArray items_zona = new JSONArray(arreglo2_2.getString("item_ids"));
                                     if(arreglo2_2.getString("status").equals("cerrado")){
-                                    total_items = total_items + items_zona.length();}
+                                   total_items = total_items + arreglo2_2.getInt("total_items");
+                                        }
                                 }
                                 int valuesample = arreglo1_2.getInt("item_aprox");
                                 int value =((total_items *100) / arreglo1_2.getInt("item_aprox"));

@@ -54,11 +54,11 @@ public class SMSlogin extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
 
 
-        consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
+        //consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
 
-        edtUsuario.setText(imei);
+        //edtUsuario.setText(imei);
 
-        consultar_us();
+        //consultar_us();
 
 
 

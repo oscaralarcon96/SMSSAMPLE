@@ -288,7 +288,7 @@ public class SMScomprobarZona extends AppCompatActivity {
             int myColor = Color.parseColor("#A2224C");
             btngeneral.setBackgroundColor(myColor);
             btngeneral.setTextColor(Color.WHITE);
-            //BOTON AGRUPADO
+            //BOTON AGROUND
             btnagrupado.setBackgroundColor(Color.WHITE);
             btnagrupado.setTextColor(Color.BLACK);
             lv2=findViewById(R.id.listaV); //listview
